@@ -81,7 +81,7 @@
                         </div>
                         <div class="row">
                             @foreach ($result as $item)
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mt-3 ">
                                     <div class="item">
                                         <a href="{{ route('mycourse', $item->id) }}">
 

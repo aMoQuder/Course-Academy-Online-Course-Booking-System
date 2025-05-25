@@ -840,7 +840,20 @@
     margin-left: 5px;
 }
 
+.about-img {
+    height: 510px;
+}
+
+@media only screen and (max-width: 530px) {
+    .about-img {
+        height: 633px !important;
+    }
+}
+
 @media only screen and (max-width: 991px) {
+    .about-img {
+        height: 596px;
+    }
     .add-menu-left ul {
         display: block !important;
     }

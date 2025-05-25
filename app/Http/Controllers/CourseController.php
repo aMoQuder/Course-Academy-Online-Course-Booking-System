@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CoursreRequest;
 use App\Model\course;
 use App\Model\instructor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller

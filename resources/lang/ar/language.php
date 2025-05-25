@@ -128,6 +128,14 @@ return [
     'price' => 'السعر',
     'instractore' => 'المدرس',
     'operation' => 'الإجراء',
+    'dashboard' => 'الرئيسية',
+    'table' => 'جداول',
+    'bages' => 'صفح اخرى',
+    'simplePage' => 'الصفحة الرئيسية',
+    'register' => 'اضافة مستخدم',
+    'Navigation' => 'محتويات',
+    'EnterName' => 'ادخل اسمك ',
+
 
 ];
 ?>

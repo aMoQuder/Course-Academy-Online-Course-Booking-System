@@ -18,7 +18,8 @@
                             @foreach ($event as $item)
                                 <div class="recent-news blog-lg m-b40">
                                     <div class="action-box blog-lg">
-                                        <img src="{{ asset('/Events/img/' . $item->event_img) }}" class="imgEvent" alt="">
+                                        <img src="{{ asset('/Events/img/' . $item->event_img) }}" class="imgEvent"
+                                            alt="">
                                     </div>
                                     <div class="info-bx">
                                         <ul class="media-post">
@@ -43,13 +44,32 @@
                         <!-- Pagination start -->
                         <div class="pagination-bx rounded-sm gray clearfix">
                             <ul class="pagination">
-                                <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                <li class="previous  {{ $event->onFirstPage() ? 'disabled' : '' }}"><a
+                                        href="{{ $event->previousPageUrl() }}" aria-label="Previous" tabindex="-1"
+                                        aria-disabled="{{ $event->onFirstPage() ? 'true' : 'false' }}"><i
+                                            class="ti-arrow-left"></i> Prev</a></li>
+
+
+                                <!-- أزرار الصفحات -->
+                                @foreach ($event->links()->elements[0] as $page => $url)
+                                    <li class="active {{ $page == $event->currentPage() ? 'active' : '' }}">
+                                        <a href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+
+
+
+
+                                <!-- زر التالي -->
+                                <li class="next {{ $event->hasMorePages() ? '' : 'disabled' }}">
+                                    <a href="{{ $event->nextPageUrl() }}" aria-label="Next">
+                                        Next <span aria-hidden="true"><i class="ti-arrow-right"></i></span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
+
+
                         <!-- Pagination END -->
                     </div>
                     <!-- Left part END -->
@@ -111,7 +131,7 @@
                                     </form>
                                 </div>
                             </div>
-                        
+
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Tags</h6>
                                 <div class="tagcloud">

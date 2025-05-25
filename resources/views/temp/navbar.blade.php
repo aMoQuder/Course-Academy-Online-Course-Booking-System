@@ -110,7 +110,8 @@
                             <li class="active"><a href="{{ route('welcome') }}">{{ __('language.Home') }} </a>
 
                             </li>
-                            <li><a href="javascript:;">{{ __('language.PAGE') }}</a>
+                            <li><a href="javascript:;">{{ __('language.PAGE') }} <i
+                                class="fa fa-chevron-down"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="{{ route('About') }}">{{ __('language.ABOUT') }}</a>
                                     </li>

@@ -17,9 +17,15 @@
                     <!-- About Us -->
                     <div class="section-area section-sp1">
                         <div class="container">
-                            @if (session('massege'))
-                            <h3 class="alert alert-primary text-center">{{ session('massege') }} </h3>
-                        @endif
+                            @if (session('massege') == 'success booking')
+                                @if (session('massege'))
+                                    <h3 class="alert alert-dark text-success text-center">{{ session('massege') }} </h3>
+                                @endif
+                            @else
+                                @if (session('massege'))
+                                    <h3 class="alert alert-dark text-danger text-center">{{ session('massege') }} </h3>
+                                @endif
+                            @endif
                             <div class="row d-flex flex-row-reverse">
                                 <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
                                     <div class="course-detail-bx ">
@@ -375,43 +381,90 @@
             </div>
             <!-- Content END-->
             <!-- Modal -->
-            <div class="modal fade " style="margin-top: 100px;" id="exampleModal" tabindex="-5555" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content bg-light m-auto">
-                        <div class="modal-body  " style="direction: rtl;">
-                            <button type="button" class="close text-dark btn-warning my-3 px-4 py-2 rounded-1"
-                                data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                            </button>
+            @guest
 
-                                    <form action="{{route('bookingstore')}}" class="p-4" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                            <input type="hidden" name="course" value="{{ $item->name }}">
-                                            <input type="text"  name="name"
-                                                value="{{ Auth::user()->name }}"class="form-control my-3" aria-describedby="helpId">
-                                                @error('name')
-                                                <div class="alert alert-danger my-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="tel" class="form-control" name="phone"
-                                                placeholder="{{__('language.phone')}}"class="form-control my-3" aria-describedby="helpId">
-                                                @error('phone')
-                                                <div class="alert alert-danger my-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                <div class="modal fade " style="margin-top: 100px;" id="exampleModal" tabindex="-5555"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-light m-auto">
+                            <div class="modal-body  " style="direction: rtl;">
+                                <button type="button" class="close text-dark btn-warning my-3 px-4 py-2 rounded-1"
+                                    data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                </button>
 
-                                        <input type="submit" class="btn btn-outline-success my-3 px-4 py-2 rounded-1 "
-                                            value="{{__('language.book')}}">
-                                    </form>
-                                    <!-- Footer Start -->
+                                <form action="" class="p-4" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" name="name" placeholder="{{ __('language.EnterName') }}"
+                                            class="form-control my-3" aria-describedby="helpId">
+                                        @error('name')
+                                            <div class="alert alert-danger my-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" name="phone"
+                                            placeholder="{{ __('language.phone') }}"class="form-control my-3"
+                                            aria-describedby="helpId">
+                                        @error('phone')
+                                            <div class="alert alert-danger my-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
+                                    <a href="{{ route('login') }}" class="btn btn-outline-success my-3 px-4 py-2 rounded-1">
+                                        {{ __('language.book') }}
+                                    </a>
+                                </form>
+                                <!-- Footer Start -->
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="modal fade " style="margin-top: 100px;" id="exampleModal" tabindex="-5555"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content bg-light m-auto">
+                            <div class="modal-body  " style="direction: rtl;">
+                                <button type="button" class="close text-dark btn-warning my-3 px-4 py-2 rounded-1"
+                                    data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                </button>
+
+                                <form action="{{ route('bookingstore') }}" class="p-4" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" name="course" value="{{ $item->name }}">
+
+                                        <input type="text" name="name"
+                                            value="{{ Auth::user()->name }}"class="form-control my-3"
+                                            aria-describedby="helpId">
+                                        @error('name')
+                                            <div class="alert alert-danger my-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" name="phone"
+                                            placeholder="{{ __('language.phone') }}"class="form-control my-3"
+                                            aria-describedby="helpId">
+                                        @error('phone')
+                                            <div class="alert alert-danger my-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <input type="submit" class="btn btn-outline-success my-3 px-4 py-2 rounded-1 "
+                                        value="{{ __('language.book') }}">
+                                </form>
+                                <!-- Footer Start -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endguest
         @endif
     @endforeach
 

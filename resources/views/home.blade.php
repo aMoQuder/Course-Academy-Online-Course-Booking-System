@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <a href="{{route('booking')}}">
-                                    <div class="card text-center order-visitor-card">
+                                    <div class="card text-center order-visitor-card navbook">
                                         <div class="card-block">
                                             <h6 class="m-b-0">only it's of user </h6>
                                             <h4 class="m-t-15 m-b-15"><i class="fa fa-arrow-up m-r-15 text-c-green"></i>booking course</h4>

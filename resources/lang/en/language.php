@@ -26,7 +26,7 @@ return [
     "ABOUT2" => "Learn a new skill in Kian on  your time",
     "Read" => "Read More",
     "CompletedProjects" => "Completed Projects",
-    "HappyStudent" => ">Happy student",
+    "HappyStudent" => "Happy student",
     "QuestionsAnswered" => "Questions Answered",
     "OrderedCoffee" => "Ordered Coffee's",
     "BLOG1" => "Upcoming Blogs",
@@ -120,6 +120,13 @@ return [
     'price' => 'Price',
     'instractore' => 'Instractore',
     'operation' => 'Operation',
+    'dashboard' => 'Dashboard',
+    'table' => 'Table',
+    'bages' => 'Bages',
+    'simplePage' => 'simple page',
+    'register' => 'register',
+    'Navigation' => 'Navigation',
+    'EnterName' => 'Enter Name',
 ];
 
 ?>

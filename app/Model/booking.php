@@ -10,7 +10,7 @@ class booking extends Model
         'name',
         'course',
         'phone',
-        'nafigation',
+        'status',
         'book_id'
     ];
 }

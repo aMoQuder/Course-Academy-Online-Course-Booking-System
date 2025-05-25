@@ -26,6 +26,14 @@ Route::group(
     function () {
 
         Route::get('/', 'WelcomeController@index')->name('welcome');
+        Route::get('/KianCourse:{id}', 'AnycourseController@index')->name('mycourse');
+        Route::get('/instructore{id}', 'AnycourseController@profile')->name('incourse');
+        Route::get('/courses', 'AnycourseController@indexall')->name('courses');
+        Route::get('/event', 'Events_welcomeController@index')->name('event');
+        Route::get('/contactUs', 'ContactController@index')->name('contactUs');
+        Route::get('/About', 'AboutController@index')->name('About');
+
+
 
         Route::group(['middleware' => 'auth'], function () {
             Route::get('/course', function () {
@@ -38,20 +46,13 @@ Route::group(
                 $query = $request->input('query');
                 $courses = course::where('name', 'like', "%{$query}%")->get();
                 $instructor = instructor::all();
-                return view('results', compact('courses', 'instructor','query'));
+                return view('results', compact('courses', 'instructor', 'query'));
             });
 
-            Route::get('/KianCourse:{id}', 'AnycourseController@index')->name('mycourse');
-            Route::get('/instructore{id}', 'AnycourseController@profile')->name('incourse');
-            Route::get('/courses', 'AnycourseController@indexall')->name('courses');
-            Route::get('/event', 'Events_welcomeController@index')->name('event');
-            Route::get('/opinionDashbourd', 'OpinionController@opinionDashbourd')->name('opinionDashbourd');
-            Route::get('/contactUs', 'ContactController@index')->name('contactUs');
-            Route::get('/About', 'AboutController@index')->name('About');
+
             Route::post('/bookingstore', 'BookingController@store')->name('bookingstore');
             Route::post('/addopinion', 'AboutController@addopinion')->name('addopinion');
-            Route::post('/addopiniondash', 'OpinionController@addopiniondash')->name('addopiniondash');
-            Route::post('/contact10/save', 'ContactController@save')->name('contact.save');
+            Route::post('/contact/save', 'ContactController@save')->name('contact.save');
             //--------------------navbar--------------------------
         });
 
@@ -62,6 +63,10 @@ Route::group(
             Route::get('/showbooking{id}', 'BookingController@show')->name('showbooking');
             Route::get('/looking{id}', 'BookingController@looking')->name('looking');
             Route::get('/deletbook{id}', 'BookingController@delet')->name('deletbook');
+
+            Route::get('/opinionDashbourd', 'OpinionController@opinionDashbourd')->name('opinionDashbourd');
+            Route::post('/addopiniondash', 'OpinionController@addopiniondash')->name('addopiniondash');
+
 
             // --------create operation----
             Route::get('/createCourse', 'CourseController@create')->name('createCourse');
@@ -159,7 +164,5 @@ Route::group(
             //------------------------- Pages -------------------
 
         });
-
     }
 );
-

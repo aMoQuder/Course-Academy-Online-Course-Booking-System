@@ -9,6 +9,7 @@ use App\Model\instructor;
 use App\Model\Instructors;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TableController extends Controller
 {
@@ -48,7 +49,7 @@ class TableController extends Controller
             "email" => $request->email,
             "role" => $request->role,
             "status" => $request->status,
-            "password" => $request->password,
+            "password" => Hash::make($request->password),
 
         ]);
         return redirect()->route('table')->with('message', 'Created Successfully');
@@ -81,7 +82,7 @@ class TableController extends Controller
             "role" => $request->role,
             "status" => $request->status,
             "opinion" => $request->opinion,
-            "password" => $request->password,
+            "password" =>Hash::make($request->password),
         ]);
 
         return redirect()->route('table');

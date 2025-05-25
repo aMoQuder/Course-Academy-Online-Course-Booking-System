@@ -190,48 +190,48 @@
                             </div>
                         </div>
 
-                        <div class="pcoded-navigation-label">Navigation</div>
+                        <div class="pcoded-navigation-label">{{ __('language.Navigation') }}</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="active">
                                 <a href="{{route("home")}}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                    <span class="pcoded-mtext">Dashboard</span>
+                                    <span class="pcoded-mtext">{{ __('language.dashboard') }}</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                         </ul>
 
-                        <div class="pcoded-navigation-label">Tables</div>
+                        <div class="pcoded-navigation-label">{{ __('language.table') }}</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
                                 <a href="{{route('table')}}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
-                                    <span class="pcoded-mtext">Table</span>
+                                    <span class="pcoded-mtext">{{ __('language.table') }}</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                         </ul>
 
-                        <div class="pcoded-navigation-label">Pages</div>
+                        <div class="pcoded-navigation-label">{{ __('language.bages') }}</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="pcoded-hasmenu ">
                                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                    <span class="pcoded-mtext">Pages</span>
+                                    <span class="pcoded-mtext">{{ __('language.bages') }}</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
                                     <li class="">
                                         <a  href="{{ route('users.create') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext">Registration</span>
+                                            <span class="pcoded-mtext">{{ __('language.register') }}</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
                                     <li class="">
                                         <a href="{{route("welcome")}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
-                                            <span class="pcoded-mtext">Sample Page</span>
+                                            <span class="pcoded-mtext">{{ __('language.simplePage') }}</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>

@@ -13,8 +13,9 @@ class BookingController extends Controller
     public function store(bookingRequest $request)
     {
         $book = booking::all();
+        $user_id=auth()->user()->id;
         foreach ($book as $item) {
-            if ($item->course == $request->course&&$item->book_id == $request->book_id) {
+            if ($item->course == $request->course&&$item->book_id == $user_id) {
                 return redirect()->back()->with("massege", "you booked this course please book ather course
                  or wait manger of acadmy");
             }
@@ -24,7 +25,6 @@ class BookingController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'course' => $request->course,
-            'nafigation' => 0,
             'book_id' => $bookid,
         ]);
         return redirect()->back()->with("massege", "success booking ");
@@ -32,30 +32,50 @@ class BookingController extends Controller
 
     public function looking($id)
     {
+        $book = booking::FindOrfail($id);
+        $book->status = "sent";
+        $book->save();
 
-        $book1 = booking::FindOrfail($id);
-        if ($book1->nafigation ==3) {
-            return redirect()->route('booking');
-        }
-        $book1->nafigation = 2;
-        $book1->save();
-        return redirect()->route('booking');
+                // 2. تجهيز رقم الهاتف بصيغة واتساب الصحيحة
+        $rawPhone = $book->phone;
+        $cleanedPhone = ltrim($rawPhone, '0'); // حذف الصفر الأول فقط
+        $phone = "20" . $cleanedPhone; // غيّر "20" حسب كود دولتك
+
+        $message = "Mr: {$book->name}, you have booked  course {$book->course} . Your booking is confirmed. Thank you for choosing us.";
+
+        // تنسيق الرسالة لتكون صالحة في URL
+        $message = urlencode($message);
+
+        // توليد الرابط
+        $link = "https://api.whatsapp.com/send?phone={$phone}&text={$message}";
+
+        // إعادة توجيه المستخدم إلى رابط واتساب
+        return redirect()->away($link);
     }
     public function show($id)
     {
         $instruct = instructor::all();
         $courses = course::all();
         $book = booking::FindOrfail($id);
-        $book->nafigation = 1;
+        if ($book->status =="sent") {
+            return view('showBook', ['result' => $book, 'course' => $courses, 'instructores' => $instruct]);
+        }
+        $book->status = "showed";
         $book->save();
         return view('showBook', ['result' => $book, 'course' => $courses, 'instructores' => $instruct]);
     }
+
+
+
     public function delet($id)
     {
         $book = booking::FindOrfail($id);
         $book->delete();
         return redirect()->route('booking')->with("massege", "success booking delete");
     }
+
+
+
     public function index()
     {
         $instruct = instructor::all();

@@ -78,21 +78,21 @@
 
                                                         </td>
                                                             <td class="text-center d-flex justify-content-center">
-                                                                @if ($item->nafigation == 0)
+                                                                @if ($item->status == "notshowed")
                                                                     <a href="{{ route('showbooking', $item->id) }}">
                                                                         <h6 class="f-w-700"><i
                                                                                 class="fas fa-level-down-alt text-c-red mt-2"></i>
                                                                         </h6>
 
                                                                     </a>
-                                                                @elseif($item->nafigation == 1)
+                                                                @elseif($item->status == "showed")
                                                                     <a href="{{ route('showbooking', $item->id) }}">
                                                                         <h6 class="f-w-700"><i
                                                                                 class="fas fa-level-down-alt text-c-blue mt-2"></i>
                                                                         </h6>
 
                                                                     </a>
-                                                                @elseif($item->nafigation == 2)
+                                                                @elseif($item->status == "sent")
                                                                     <a href="{{ route('showbooking', $item->id) }}">
                                                                         <h6 class="f-w-700"><i
                                                                                 class="fas fa-level-up-alt text-c-green mt-2"></i>

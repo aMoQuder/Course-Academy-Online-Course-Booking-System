@@ -16,9 +16,13 @@ class InstructoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|unique:instructors|max:11',
             "name"=>"required|min:5",
-            "your_job"=>"required|min:5",
+            "name"=>"required|min:5",
+            "phone"=>"required",
+            "your_job"=>"required|min:5|max:255",
+            "facebook"=>"required|min:5|max:255",
+            "instagram"=>"required|min:5|max:255",
+            "linked_in"=>"required|min:5|max:255",
             "img"=>"required|mimes:jpeg,png,gif"
         ];
     }

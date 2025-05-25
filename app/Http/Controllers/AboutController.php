@@ -23,10 +23,15 @@ class AboutController extends Controller
             'opinion' => 'required|string|max:255',
         ]);
         $user = User::findOrFail($id);
+        $oldOpin=$user->opinion;
         $user->opinion = $request->input('opinion');
         $user->save();
+        if ($oldOpin==$request->input('opinion')||$oldOpin!= "noOpinion") {
+            return redirect()->back()->with('massege', 'Opinion adding successfully.');
+        }else{
 
-        return redirect()->back()->with('massege', 'Opinion updated successfully.');
+            return redirect()->back()->with('massege', 'Opinion adding successfully.');
+        }
     }
 
     public function DashbourdAbout(){

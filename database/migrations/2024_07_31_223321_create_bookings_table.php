@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->string('phone');
             $table->string('book_id');
             $table->string('course');
-            $table->integer('nafigation');
+            $table->enum("status",['showed','notshowed','sent'])->default("notshowed");
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class Events_welcomeController extends Controller
 {
     function index () {
-        $events =Events::all();
+        $events =Events::orderBy('created_at', 'desc')->paginate(3);
         $courses=course::all();
         return view('event',['event'=>$events,'result'=>$courses]);
     }
